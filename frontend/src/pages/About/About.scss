@@ -1,0 +1,52 @@
+@use "../../scss/abstracts/" as *;
+.About__Container {
+  margin-top: 1rem;
+  min-height: 85vh;
+  background-color: $backgroundColor;
+  border: 1px solid $backgroundBoder;
+  border-radius: 3rem;
+
+  @include mobile {
+    padding: 0 !important;
+  }
+  .Title__Container {
+    h1 {
+      font-size: $fontSizeLarge;
+      font-weight: 600;
+    }
+  }
+  .About__Main {
+    .About__Img {
+      .Img__Box {
+        height: 360px;
+        width: 360px;
+        background-color: $backgroundColor;
+
+        img {
+          width: 80%;
+          height: 80%;
+          margin-top: 2rem;
+        }
+      }
+    }
+    .About__Text {
+      text-align: start;
+      h2 {
+        font-size: $fontSizeMedium;
+        font-weight: 600;
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          font-size: $fontSizeNormal;
+          background-color: $backgroundColor;
+          border: 1px solid $backgroundBoder;
+          padding: 5px 10px;
+          border-radius: 20px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

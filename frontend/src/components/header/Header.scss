@@ -1,0 +1,40 @@
+@use "../../scss/abstracts/" as *;
+.Header__Container {
+  background-color: $glassColor;
+  justify-content: space-between;
+  display: flex !important;
+
+  border-radius: 20px;
+  color: $colorTitle;
+  padding: 0 3rem !important;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba($color: #000000, $alpha: 0.05);
+  .Header__logo {
+    font-size: $fontSizeMedium !important;
+    background-color: none;
+  }
+  .Header__item {
+    font-size: $fontSizeMedium !important;
+    margin-left: 2rem;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      box-shadow: 0 5px 10px rgba($color: #000000, $alpha: 0.05);
+      cursor: pointer;
+      animation: Header_animation 0.5s ease-in-out forwards;
+    }
+    @keyframes Header_animation {
+      from {
+        background-color: none;
+      }
+      to {
+        background-color: $backgroundTitle;
+        transform: scale(105%);
+      }
+    }
+  }
+  @include mobile {
+    display: none !important;
+  }
+}

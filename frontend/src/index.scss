@@ -1,0 +1,38 @@
+$pink-light: #cfa2b4;
+$cyan-light: #aef1ee;
+$glassColor: rgba(255, 255, 255, 0.2);
+:root {
+  // --main-color: #e02f6b;
+  // --blue: #0000ff;
+  // --blue-dark: #18293c;
+  // --orange: #ffa500;
+  // --green-yellow: #cddc39;
+  // --pink-light: #cfa2b4;
+  // --cyan-light: #aef1ee;
+  // --white: #ffffff;
+  // --white-alpha-30: rgba(255, 255, 255);
+  $pink-light: #cfa2b4;
+  $cyan-light: #aef1ee;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 10px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom right, $pink-light, $cyan-light);
+}
