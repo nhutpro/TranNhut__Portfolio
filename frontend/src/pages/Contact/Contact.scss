@@ -1,0 +1,109 @@
+@use "../../scss/abstracts/" as *;
+.Contact {
+  margin-top: 1rem;
+  min-height: 85vh;
+  background-color: $backgroundColor;
+  border: 1px solid $backgroundBoder;
+  border-radius: 3rem;
+  color: $aboutColor;
+  padding: 0 0 50px 0;
+  @include mobile {
+    padding: 0 0 30px 0 !important;
+  }
+
+  .Title__Container {
+    h1 {
+      font-size: $fontSizeLarge;
+      font-weight: 600;
+    }
+  }
+  .Contact__Form {
+    .Contact__Input {
+      width: 80%;
+      background-color: $backgroundColor !important;
+      .MuiFilledInput-root {
+        &::after {
+          border-bottom: 2px solid $mainColor;
+        }
+      }
+      &:focus-within label {
+        color: $mainColor;
+      }
+    }
+    button {
+      list-style: 1.5rem;
+      font-size: $fontSizeMedium;
+      background-color: $backgroundColor;
+      border: 1px solid $backgroundBoder;
+      color: $mainColor;
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
+      margin-top: 1rem;
+      position: relative;
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
+      &:hover::before {
+        width: 100%;
+        left: 0;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        background-color: $mainColor;
+        width: 0%;
+        height: 100%;
+        border-radius: 1rem;
+        left: 50%;
+        top: 0;
+        z-index: -1;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+  .Contact__Info {
+    text-align: start;
+    padding: 0;
+    @include mobile {
+      padding: 0 0 0 30px !important;
+      order: -1;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: $fontSizeMedium;
+      font-weight: 600;
+    }
+    .Contact__Item {
+      margin-top: 20px;
+      .Contact__Icon {
+        background-color: $backgroundColor;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+        &:hover {
+          cursor: pointer;
+          animation: rotation 2s ease infinite;
+        }
+        svg {
+          color: $mainColor;
+          font-size: 40px;
+        }
+        @keyframes rotation {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(359deg);
+          }
+        }
+      }
+    }
+  }
+}
