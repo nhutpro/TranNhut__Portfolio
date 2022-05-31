@@ -8,6 +8,7 @@ import Portfolio from "./pages/Portfolio/Portfolio";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import PortfolioDetail from "./components/portfolioDetail/PortfolioDetail";
+import Setting from "./pages/Setting/Setting";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
           path="/detail"
           element={<PortfolioDetail></PortfolioDetail>}
         ></Route>
+        <Route path="/setting" element={<Setting></Setting>}></Route>
       </Routes>
     </div>
   );

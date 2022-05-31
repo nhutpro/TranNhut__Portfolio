@@ -38,3 +38,72 @@
     display: none !important;
   }
 }
+.Menu__Container {
+  display: none;
+  position: absolute;
+  right: 28px;
+  top: 24px;
+  color: $mainColor;
+  @include mobile {
+    display: block;
+  }
+  .Menu__Icon {
+    display: inline-flex;
+    background-color: $backgroundColor;
+    border: 1px solid $backgroundBoder;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    svg {
+      font-size: 30px;
+    }
+  }
+  .Menu__Main {
+    background-image: linear-gradient(
+      to bottom right,
+      $backgroundColorMainOne,
+      $backgroundColorMainTwo
+    );
+    border: 1px solid $backgroundBoder;
+    border-radius: 20px;
+    padding: 20px;
+    position: absolute;
+    right: 8px;
+    top: 48px;
+
+    &::after {
+      right: 12px;
+      top: -8px;
+      content: "";
+      position: absolute;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 10px solid #e02f6b;
+      border-radius: 1px;
+      z-index: -1;
+      transform: rotate(16deg);
+    }
+    .Menu__Item {
+      display: flex;
+      margin-top: 10px;
+      align-items: center;
+      justify-content: start;
+      .Item__Icon {
+        width: 40px;
+        height: 40px;
+        background-color: $backgroundColor;
+        border: 1px solid $backgroundBoder;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .Item__Text {
+        font-size: $fontSizeMedium;
+        margin-left: 20px;
+      }
+    }
+  }
+}

@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { Container, ListItemText, List, Typography } from "@mui/material";
+import {
+  Container,
+  ListItemText,
+  List,
+  Typography,
+  MenuItem,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 import "./Header.scss";
 const Header = () => {
+  const [open, setOpen] = useState(false);
+  const menuELe = useRef(null);
   const [alignment, setAlignment] = React.useState("web");
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -107,46 +121,67 @@ const Header = () => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+  const showMenu = () => {
+    setOpen((prevValue) => !prevValue);
+  };
+  const closeMenu = () => {
+    setOpen(false);
+  };
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuELe.current && !menuELe.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuELe]);
+
   return (
-    <Container className="Header__Container">
-      <Typography
-        component="h2"
-        className="Header__logo"
-        sx={{
-          lineHeight: "3.5rem",
-          fontWeight: 600,
-        }}
-      >
-        T.Nhựt
-      </Typography>
-      <List
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Link to="/">
-          <Typography component="p" className="Header__item">
-            Home
-          </Typography>
-        </Link>
-        <Link to="/about">
-          <Typography component="p" className="Header__item">
-            About
-          </Typography>
-        </Link>
-        <Link to="/portfolio">
-          <Typography component="p" className="Header__item">
-            Portfolio
-          </Typography>
-        </Link>
-        <Link to="/contact">
-          <Typography component="p" className="Header__item">
-            Contact
-          </Typography>
-        </Link>
-      </List>
-      {/* <FormGroup>
+    <Box>
+      <Container className="Header__Container">
+        <Typography
+          component="h2"
+          className="Header__logo"
+          sx={{
+            lineHeight: "3.5rem",
+            fontWeight: 600,
+          }}
+        >
+          T.Nhựt
+        </Typography>
+        <List
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Link to="/">
+            <Typography component="p" className="Header__item">
+              Home
+            </Typography>
+          </Link>
+          <Link to="/about">
+            <Typography component="p" className="Header__item">
+              About
+            </Typography>
+          </Link>
+          <Link to="/portfolio">
+            <Typography component="p" className="Header__item">
+              Portfolio
+            </Typography>
+          </Link>
+          <Link to="/contact">
+            <Typography component="p" className="Header__item">
+              Contact
+            </Typography>
+          </Link>
+        </List>
+
+        {/* <FormGroup>
         <FormControlLabel
           control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
           label="Dark Mode"
@@ -161,7 +196,68 @@ const Header = () => {
         <ToggleButton value="web">EN</ToggleButton>
         <ToggleButton value="android">VI</ToggleButton>
       </ToggleButtonGroup> */}
-    </Container>
+      </Container>
+      <div className="Menu__Container" ref={menuELe}>
+        <Box className="Menu__Icon" onClick={showMenu}>
+          <MenuIcon></MenuIcon>
+        </Box>
+        <Box className={open ? "Menu__Main" : "Menu__Main displayHide"}>
+          <Link
+            to="/"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            <Box className="Menu__Item">
+              <Box className="Item__Icon">
+                <HomeIcon></HomeIcon>
+              </Box>
+              <Typography className="Item__Text">Home</Typography>
+            </Box>
+          </Link>
+
+          <Link
+            to="/about"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            <Box className="Menu__Item">
+              <Box className="Item__Icon">
+                <InfoIcon></InfoIcon>
+              </Box>
+              <Typography className="Item__Text">About</Typography>
+            </Box>
+          </Link>
+          <Link
+            to="/portfolio"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            <Box className="Menu__Item">
+              <Box className="Item__Icon">
+                <AccountTreeIcon></AccountTreeIcon>
+              </Box>
+              <Typography className="Item__Text">Portfolio</Typography>
+            </Box>
+          </Link>
+          <Link
+            to="/contact"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            <Box className="Menu__Item">
+              <Box className="Item__Icon">
+                <ContactsIcon></ContactsIcon>
+              </Box>
+              <Typography className="Item__Text">Contact</Typography>
+            </Box>
+          </Link>
+        </Box>
+      </div>
+    </Box>
   );
 };
 
