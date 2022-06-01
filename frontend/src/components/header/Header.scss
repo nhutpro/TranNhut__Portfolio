@@ -1,14 +1,13 @@
 @use "../../scss/abstracts/" as *;
 .Header__Container {
-  background-color: $glassColor;
   justify-content: space-between;
   display: flex !important;
 
   border-radius: 20px;
-  color: $colorTitle;
+
   padding: 0 3rem !important;
   text-align: center;
-  box-shadow: 0 15px 35px rgba($color: #000000, $alpha: 0.05);
+
   .Header__logo {
     font-size: $fontSizeMedium !important;
     background-color: none;

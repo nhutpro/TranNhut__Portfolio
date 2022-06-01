@@ -1,12 +1,27 @@
 import React from "react";
-import { Grid, Container, Typography, Box, TextField } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Typography,
+  Box,
+  TextField,
+  useTheme,
+} from "@mui/material";
 import "./Contact.scss";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 const Contact = () => {
+  const Theme = useTheme();
   return (
-    <Container className="Contact">
+    <Container
+      className="Contact"
+      sx={{
+        backgroundColor: Theme.palette.mainColor.backgroundColor,
+        border: `1px solid ${Theme.palette.mainColor.borderColor}`,
+        color: Theme.palette.mainColor.textColor,
+      }}
+    >
       <Grid
         container
         direction="row"
@@ -29,26 +44,30 @@ const Contact = () => {
             <TextField
               label="Name"
               variant="filled"
-              color="success"
+              color="primary"
               className="Contact__Input"
+              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
             />
             <TextField
               label="Email"
               variant="filled"
-              color="success"
+              color="primary"
               className="Contact__Input"
+              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
             />
             <TextField
               label="Subject"
               variant="filled"
-              color="success"
+              color="primary"
               className="Contact__Input"
+              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
             />
             <TextField
               label="Message"
               variant="filled"
-              color="success"
+              color="primary"
               className="Contact__Input"
+              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
             />
           </Box>
           <button className="Form__submit">Send Message</button>
@@ -64,7 +83,7 @@ const Contact = () => {
           </Container>
           <Container className="Contact__Item" sx={{ padding: 0 }}>
             <Typography component="h2">Follow me</Typography>
-            <Box component="div">
+            <Box component="div" sx={{ color: Theme.palette.mainColor.main }}>
               <Box component="span" className="Contact__Icon">
                 <FacebookOutlinedIcon></FacebookOutlinedIcon>
               </Box>

@@ -1,10 +1,22 @@
 import React from "react";
 import "./About.scss";
-import { Container, Typography, Grid } from "@mui/material";
+import { Container, Typography, Grid, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const About = () => {
+  const languageValue = useSelector((state) => state);
+
+  console.log([languageValue]);
+  const Theme = useTheme();
   return (
-    <Container className="About__Container">
+    <Container
+      className="About__Container"
+      sx={{
+        backgroundColor: Theme.palette.mainColor.backgroundColor,
+        border: `1px solid ${Theme.palette.mainColor.borderColor}`,
+        color: Theme.palette.mainColor.textColor,
+      }}
+    >
       <Grid
         container
         direction="row"
@@ -61,7 +73,7 @@ const About = () => {
                 2019-2022
               </Typography>
               <Typography component="h4">
-                bachlor of technology{" "}
+                bachelor of technology{" "}
                 <Typography component="span">
                   University of Information Technology
                 </Typography>

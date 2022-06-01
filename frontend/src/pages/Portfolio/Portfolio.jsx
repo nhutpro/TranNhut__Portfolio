@@ -6,6 +6,7 @@ import {
   ListItem,
   Typography,
   Grid,
+  useTheme,
 } from "@mui/material";
 import "./Portfolio.scss";
 import PortfolioDetail from "../../components/portfolioDetail/PortfolioDetail";
@@ -17,8 +18,16 @@ const Portfolio = () => {
   const openDetail = () => {
     setShowDetail(true);
   };
+  const Theme = useTheme();
   return (
-    <Container className="Portfolio__Container">
+    <Container
+      className="Portfolio__Container"
+      sx={{
+        color: Theme.palette.mainColor.textColor,
+        position: "relative",
+        zIndex: 0,
+      }}
+    >
       <Grid
         container
         direction="row"
@@ -26,7 +35,7 @@ const Portfolio = () => {
         alignItems="center"
         className="Title__Container"
       >
-        <Typography component="h1">Recect Work</Typography>
+        <Typography component="h1">Recent Work</Typography>
       </Grid>
 
       <Grid container spacing={2} className="Portfolio__List">

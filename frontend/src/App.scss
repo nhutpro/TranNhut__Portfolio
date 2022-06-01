@@ -1,11 +1,15 @@
 @use "./scss/abstracts/" as *;
 .App {
-  text-align: center;
-  width: calc(100% - 100px) !important;
-  margin: 1rem auto;
-  font-size: $fontSizeNormal;
-  @include mobile {
-    width: 95% !important;
+  padding: 20px 0;
+  z-index: 0;
+  .App__Main {
+    text-align: center;
+    width: calc(100% - 100px) !important;
+    margin: 0rem auto;
+    font-size: $fontSizeNormal;
+    @include mobile {
+      width: 95% !important;
+    }
   }
 }
 .displayHide {

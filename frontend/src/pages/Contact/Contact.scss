@@ -5,7 +5,7 @@
   background-color: $backgroundColor;
   border: 1px solid $backgroundBoder;
   border-radius: 3rem;
-  color: $aboutColor;
+  // color: $aboutColor;
   padding: 0 0 50px 0;
   @include mobile {
     padding: 0 0 30px 0 !important;
@@ -20,14 +20,14 @@
   .Contact__Form {
     .Contact__Input {
       width: 80%;
-      background-color: $backgroundColor !important;
+      // background-color: $backgroundColor !important;
       .MuiFilledInput-root {
         &::after {
-          border-bottom: 2px solid $mainColor;
+          // border-bottom: 2px solid $mainColor;
         }
       }
       &:focus-within label {
-        color: $mainColor;
+        // color: $mainColor;
       }
     }
     button {
@@ -92,7 +92,7 @@
           animation: rotation 2s ease infinite;
         }
         svg {
-          color: $mainColor;
+          // color: $mainColor;
           font-size: 40px;
         }
         @keyframes rotation {

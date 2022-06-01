@@ -2,8 +2,8 @@
 .Home__container {
   margin-top: 1rem;
   min-height: 85vh;
-  background-color: $backgroundColor;
-  border: 1px solid $backgroundBoder;
+  // background-color: $backgroundColor;
+  // border: 1px solid $backgroundBoder;
   border-radius: 3rem;
   display: flex !important;
   justify-content: center;
@@ -39,7 +39,7 @@
         font-size: $fontSizeMedium;
         background-color: $backgroundColor;
         border: 1px solid $backgroundBoder;
-        color: $mainColor;
+        // color: $mainColor;
         border-radius: 1rem;
         padding: 0.5rem 1rem;
         margin-left: 1rem;
@@ -80,9 +80,9 @@
       .img__box {
         width: 360px;
         height: 360px;
-        background-color: $backgroundColor;
+        // background-color: $backgroundColor;
         border-radius: 50%;
-        border: 8px solid $backgroundColor;
+        // border: 8px solid $backgroundColor;
         padding: 1rem 1rem;
         text-align: center;
         display: flex;

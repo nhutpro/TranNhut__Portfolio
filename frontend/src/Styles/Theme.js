@@ -1,25 +1,35 @@
 import { createTheme } from "@mui/material/styles";
 
-const Theme = createTheme({
-  status: {
-    danger: "#e53e3e",
-  },
+const lightTheme = createTheme({
   palette: {
     primary: {
-      main: "#0971f1",
-
-      darker: "#053e85",
+      main: "#e02f6b",
     },
-    neutral: {
-      main: "#64748B",
+    mainColor: {
+      main: "#e02f6b",
+      backgroundImageOne: "#cfa2b4",
+      backgroundImageTwo: "#aef1ee",
+      backgroundColor: "rgba(255, 255, 255, 0.25)",
+      borderColor: "rgba(255, 255, 255, 0.4)",
+      titleColor: "#8a2435",
+      textColor: "#18293c",
     },
-  },
-  color: {
-    glassColor: "rgba(255,255,255,0.2)",
-  },
-  fontSize: {
-    Title: "48px",
-    normal: "20px",
   },
 });
-export default Theme;
+const darkTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#424242",
+    },
+    mainColor: {
+      main: "#424242",
+      backgroundImageOne: "#212121",
+      backgroundImageTwo: "#fafafa",
+      backgroundColor: "rgba(255, 255, 255, 0.25)",
+      borderColor: "rgba(255, 255, 255, 0.4)",
+      titleColor: "#eeeeee",
+      textColor: "#f5f5f5",
+    },
+  },
+});
+export { lightTheme, darkTheme };

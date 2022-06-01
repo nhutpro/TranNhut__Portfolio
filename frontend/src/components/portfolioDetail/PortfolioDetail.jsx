@@ -1,7 +1,8 @@
 import { React } from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, useTheme } from "@mui/material";
 import "./PortfolioDetail.scss";
 const PortfolioDetail = ({ display, closeDetail }) => {
+  const Theme = useTheme();
   return (
     <Box
       className={
@@ -9,6 +10,10 @@ const PortfolioDetail = ({ display, closeDetail }) => {
           ? "PortfolioDetail__Container"
           : "PortfolioDetail__Container displayHide"
       }
+      sx={{
+        color: Theme.palette.mainColor.textColor,
+        backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
+      }}
     >
       <Box className="PortfolioDetail__Main">
         <Box className="PortfolioDetail__Img">
