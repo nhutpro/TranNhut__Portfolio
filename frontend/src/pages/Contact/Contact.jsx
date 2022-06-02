@@ -11,8 +11,43 @@ import "./Contact.scss";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import styled from "styled-components";
 const Contact = () => {
   const Theme = useTheme();
+  const Button = styled.button`
+    list-style: 1.5rem;
+    font-size: 20px;
+    background-color: ${Theme.palette.mainColor.backgroundColor};
+    border: 1px solid ${Theme.palette.mainColor.borderColor};
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 0;
+    &:hover {
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: ${Theme.palette.mainColor.main};
+      width: 0%;
+      height: 100%;
+      border-radius: 1rem;
+      left: 50%;
+      top: 0;
+      z-index: -1;
+      transition: all 0.3s ease-in-out;
+    }
+    &:hover {
+      color: ${Theme.palette.mainColor.buttonHover};
+    }
+    &:hover::before {
+      width: 100%;
+      left: 0;
+    }
+  `;
   return (
     <Container
       className="Contact"
@@ -46,31 +81,48 @@ const Contact = () => {
               variant="filled"
               color="primary"
               className="Contact__Input"
-              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
+              sx={{
+                input: {
+                  color: Theme.palette.mainColor.textColor,
+                },
+              }}
             />
             <TextField
               label="Email"
               variant="filled"
               color="primary"
               className="Contact__Input"
-              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
+              sx={{
+                input: {
+                  color: Theme.palette.mainColor.textColor,
+                },
+              }}
             />
             <TextField
               label="Subject"
               variant="filled"
               color="primary"
               className="Contact__Input"
-              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
+              sx={{
+                input: {
+                  color: Theme.palette.mainColor.textColor,
+                },
+              }}
             />
             <TextField
               label="Message"
               variant="filled"
               color="primary"
               className="Contact__Input"
-              sx={{ input: { color: Theme.palette.mainColor.textColor } }}
+              sx={{
+                input: {
+                  color: Theme.palette.mainColor.textColor,
+                },
+              }}
             />
           </Box>
-          <button className="Form__submit">Send Message</button>
+          {/* <button className="Form__submit">Send Message</button> */}
+          <Button>Send Message</Button>
         </Grid>
         <Grid item sx={12} lg={6} className="Contact__Info">
           <Container className="Contact__Item" sx={{ padding: 0 }}>

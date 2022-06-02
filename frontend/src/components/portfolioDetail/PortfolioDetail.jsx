@@ -1,8 +1,10 @@
 import { React } from "react";
 import { Container, Typography, Box, useTheme } from "@mui/material";
+
 import "./PortfolioDetail.scss";
 const PortfolioDetail = ({ display, closeDetail }) => {
   const Theme = useTheme();
+
   return (
     <Box
       className={

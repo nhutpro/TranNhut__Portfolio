@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const mode = useSelector((state) => state.mode.value);
-  console.log(mode);
+
   const Theme = mode === "light" ? lightTheme : darkTheme;
   return (
     <ThemeProvider theme={Theme}>

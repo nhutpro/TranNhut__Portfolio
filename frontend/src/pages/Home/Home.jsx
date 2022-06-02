@@ -2,9 +2,44 @@ import { Container, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 const Home = () => {
   const Theme = useTheme();
+  const Button = styled.button`
+    list-style: 1.5rem;
+    font-size: 20px;
+    background-color: ${Theme.palette.mainColor.backgroundColor};
+    border: 1px solid ${Theme.palette.mainColor.borderColor};
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 0;
+    &:hover {
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: ${Theme.palette.mainColor.main};
+      width: 0%;
+      height: 100%;
+      border-radius: 1rem;
+      left: 50%;
+      top: 0;
+      z-index: -1;
+      transition: all 0.3s ease-in-out;
+    }
+    &:hover {
+      color: ${Theme.palette.mainColor.buttonHover};
+    }
+    &:hover::before {
+      width: 100%;
+      left: 0;
+    }
+  `;
   let language = useSelector((state) => state.language.value);
   return (
     <Container
@@ -28,7 +63,7 @@ const Home = () => {
           <Typography component="h2">Full-Stack Developer</Typography>
           <Container className="Home__btn">
             <Link to="/about">
-              <button
+              {/* <button
                 className="btn"
                 style={{
                   backgroundColor: Theme.palette.mainColor.backgroundColor,
@@ -37,10 +72,11 @@ const Home = () => {
                 }}
               >
                 More About Me
-              </button>
+              </button> */}
+              <Button>About Me</Button>
             </Link>
             <Link to="/portfolio">
-              <button
+              {/* <button
                 style={{
                   backgroundColor: Theme.palette.mainColor.backgroundColor,
                   border: `1px solid ${Theme.palette.mainColor.borderColor}`,
@@ -48,7 +84,8 @@ const Home = () => {
                 }}
               >
                 Portfolio
-              </button>
+              </button> */}
+              <Button>Portfolio</Button>
             </Link>
           </Container>
         </Container>

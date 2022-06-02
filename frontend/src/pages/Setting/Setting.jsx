@@ -24,7 +24,7 @@ const Setting = () => {
     dispatch(setModeValue(e.target.value));
   };
   const Theme = useTheme();
-  console.log(Theme.palette.mainColor);
+
   return (
     <Container
       className="Setting__Container"

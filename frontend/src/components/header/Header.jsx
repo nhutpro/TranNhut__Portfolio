@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { styled } from "@mui/material/styles";
 
 import {
   Container,
@@ -13,21 +12,49 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { Link } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
 import "./Header.scss";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+const HeaderItem = styled.p`
+  font-size: 20px;
+  margin-left: 2rem;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  color: ${(props) => props.Theme.palette.mainColor.titleColor};
+  position: relative;
 
+  &::after {
+    content: "";
+    background-color: ${(props) => props.Theme.palette.mainColor.titleColor};
+    height: 1px;
+    width: 0%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transition: all 0.3s ease-in-out;
+  }
+  &:hover::after {
+    left: 0;
+    width: 100%;
+  }
+`;
 const Header = () => {
   const [open, setOpen] = useState(false);
   const menuELe = useRef(null);
   const language = useSelector((state) => state.language.value);
+
   const showMenu = () => {
     setOpen((prevValue) => !prevValue);
   };
   const closeMenu = () => {
     setOpen(false);
   };
+
+  const Theme = useTheme();
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuELe.current && !menuELe.current.contains(event.target)) {
@@ -40,7 +67,7 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuELe]);
-  const Theme = useTheme();
+
   return (
     <Box>
       <Container
@@ -68,48 +95,46 @@ const Header = () => {
           }}
         >
           <Link to="/">
-            <Typography component="p" className="Header__item">
-              {language === "VI" ? "Trang Chủ" : "Home"}
-            </Typography>
+            <HeaderItem Theme={Theme}>Home</HeaderItem>
           </Link>
           <Link to="/about">
-            <Typography component="p" className="Header__item">
-              {language === "VI" ? "Giới Thiệu" : "About"}
-            </Typography>
+            <HeaderItem Theme={Theme}>About</HeaderItem>
           </Link>
           <Link to="/portfolio">
-            <Typography component="p" className="Header__item">
-              {language === "VI" ? "Dự Án" : "Portfolio"}
-            </Typography>
+            <HeaderItem Theme={Theme}>Portfolio</HeaderItem>
           </Link>
           <Link to="/contact">
-            <Typography component="p" className="Header__item">
-              {language === "VI" ? "Liên Hệ" : "Contact"}
-            </Typography>
+            <HeaderItem Theme={Theme}>Contact</HeaderItem>
           </Link>
         </List>
-
-        {/* <FormGroup>
-        <FormControlLabel
-          control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-          label="Dark Mode"
-        />
-      </FormGroup>
-      <ToggleButtonGroup
-        color="primary"
-        value={alignment}
-        exclusive
-        onChange={handleChange}
-      >
-        <ToggleButton value="web">EN</ToggleButton>
-        <ToggleButton value="android">VI</ToggleButton>
-      </ToggleButtonGroup> */}
+        <Link to="/setting">
+          <Box
+            className="Setting"
+            sx={{
+              backgroundColor: Theme.palette.mainColor.backgroundColor,
+              border: `1px solid ${Theme.palette.mainColor.borderColor}`,
+            }}
+          >
+            <SettingsIcon></SettingsIcon>
+          </Box>
+        </Link>
       </Container>
-      <div className="Menu__Container" ref={menuELe}>
+      <Box
+        className="Menu__Container"
+        ref={menuELe}
+        sx={{ color: Theme.palette.mainColor.main }}
+      >
         <Box className="Menu__Icon" onClick={showMenu}>
           <MenuIcon></MenuIcon>
         </Box>
-        <Box className={open ? "Menu__Main" : "Menu__Main displayHide"}>
+        <Box
+          className={open ? "Menu__Main" : "Menu__Main displayHide"}
+          sx={{
+            zIndex: 1,
+            backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
+            border: `1px solid ${Theme.palette.mainColor.borderColor}`,
+          }}
+        >
           <Link
             to="/"
             onClick={() => {
@@ -163,8 +188,21 @@ const Header = () => {
               <Typography className="Item__Text">Contact</Typography>
             </Box>
           </Link>
+          <Link
+            to="/setting"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            <Box className="Menu__Item">
+              <Box className="Item__Icon">
+                <SettingsIcon></SettingsIcon>
+              </Box>
+              <Typography className="Item__Text">Setting</Typography>
+            </Box>
+          </Link>
         </Box>
-      </div>
+      </Box>
     </Box>
   );
 };

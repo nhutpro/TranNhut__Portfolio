@@ -3,11 +3,44 @@ import "./About.scss";
 import { Container, Typography, Grid, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 const About = () => {
   const languageValue = useSelector((state) => state);
-
-  console.log([languageValue]);
   const Theme = useTheme();
+  const Button = styled.button`
+    list-style: 1.5rem;
+    font-size: 20px;
+    background-color: ${Theme.palette.mainColor.backgroundColor};
+    border: 1px solid ${Theme.palette.mainColor.borderColor};
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 0;
+    &:hover {
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: ${Theme.palette.mainColor.main};
+      width: 0%;
+      height: 100%;
+      border-radius: 1rem;
+      left: 50%;
+      top: 0;
+      z-index: -1;
+      transition: all 0.3s ease-in-out;
+    }
+    &:hover {
+      color: ${Theme.palette.mainColor.buttonHover};
+    }
+    &:hover::before {
+      width: 100%;
+      left: 0;
+    }
+  `;
   return (
     <Container
       className="About__Container"
@@ -98,14 +131,12 @@ const About = () => {
             </Container>
           </Container>
           <Container className="About__Btns">
-            <Container className="Home__btn">
-              <Link to="/about">
-                <button>Download CV</button>
-              </Link>
-              <Link to="/portfolio">
-                <button>Contact Me</button>
-              </Link>
-            </Container>
+            <Link to="/about">
+              <Button>Download CV</Button>
+            </Link>
+            <Link to="/portfolio">
+              <Button>Contact Me</Button>
+            </Link>
           </Container>
         </Grid>
       </Grid>

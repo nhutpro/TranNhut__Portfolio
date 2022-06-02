@@ -19,6 +19,9 @@
   }
   .About__Main {
     .About__Img {
+      @include mobile {
+        margin-top: 20px;
+      }
       .Img__Box {
         height: 360px;
         width: 360px;
@@ -151,38 +154,42 @@
         }
       }
       .About__Btns {
-        button {
-          list-style: 1.5rem;
-          font-size: $fontSizeMedium;
-          background-color: $backgroundColor;
-          border: 1px solid $backgroundBoder;
-          color: $mainColor;
-          border-radius: 1rem;
-          padding: 0.5rem 1rem;
-          margin-left: 1rem;
-          margin-top: 1rem;
-          position: relative;
-          &:hover {
-            cursor: pointer;
-            color: white;
-          }
-          &:hover::before {
-            width: 100%;
-            left: 0;
-          }
-          &::before {
-            content: "";
-            position: absolute;
-            background-color: $mainColor;
-            width: 0%;
-            height: 100%;
-            border-radius: 1rem;
-            left: 50%;
-            top: 0;
-            z-index: -1;
-            transition: all 0.3s ease-in-out;
-          }
+        @include mobile {
+          display: flex;
+          padding: 0;
         }
+        // button {
+        //   list-style: 1.5rem;
+        //   font-size: $fontSizeMedium;
+        //   background-color: $backgroundColor;
+        //   border: 1px solid $backgroundBoder;
+        //   color: $mainColor;
+        //   border-radius: 1rem;
+        //   padding: 0.5rem 1rem;
+        //   margin-left: 1rem;
+        //   margin-top: 1rem;
+        //   position: relative;
+        //   &:hover {
+        //     cursor: pointer;
+        //     color: white;
+        //   }
+        //   &:hover::before {
+        //     width: 100%;
+        //     left: 0;
+        //   }
+        //   &::before {
+        //     content: "";
+        //     position: absolute;
+        //     background-color: $mainColor;
+        //     width: 0%;
+        //     height: 100%;
+        //     border-radius: 1rem;
+        //     left: 50%;
+        //     top: 0;
+        //     z-index: -1;
+        //     transition: all 0.3s ease-in-out;
+        //   }
+        // }
       }
     }
   }
