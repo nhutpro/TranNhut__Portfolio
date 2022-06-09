@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Box,
-  List,
-  ListItem,
-  Typography,
-  Grid,
-  useTheme,
-} from "@mui/material";
+import { Container, Box, Typography, Grid, useTheme } from "@mui/material";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import "./Portfolio.scss";
 import PortfolioDetail from "../../components/portfolioDetail/PortfolioDetail";
+import { useEffect } from "react";
+import axios from "axios";
 const Button = styled.button`
   list-style: 1.5rem;
   font-size: 20px;
@@ -18,7 +13,7 @@ const Button = styled.button`
   border: 1px solid ${(props) => props.Theme.palette.mainColor.borderColor};
   border-radius: 1rem;
   padding: 0.5rem 1rem;
-  margin-left: 1rem;
+
   margin-top: 1rem;
   position: relative;
   z-index: 0;
@@ -47,15 +42,33 @@ const Button = styled.button`
 `;
 const Portfolio = () => {
   const [showDetail, setShowDetail] = useState(false);
+  const [data, setData] = useState([]);
+  const [detail, setDetail] = useState();
+  const [loading, setLoading] = useState(true);
   const closeDetail = () => {
     setShowDetail(false);
   };
-  const openDetail = () => {
+  const openDetail = (e) => {
+    setDetail(data[e.target.value]);
     setShowDetail(true);
   };
   const Theme = useTheme();
+  let language = useSelector((state) => state.language.value);
+  useEffect(() => {
+    const getProject = async () => {
+      setLoading(true);
+      const Project = await axios.get(
+        "http://localhost:5000/project?lang=" + language
+      );
 
-  return (
+      setData(Project.data);
+      setLoading(false);
+    };
+    getProject();
+  }, [language]);
+  return loading ? (
+    <></>
+  ) : (
     <Container
       className="Portfolio__Container"
       sx={{
@@ -71,22 +84,34 @@ const Portfolio = () => {
         alignItems="center"
         className="Title__Container"
       >
-        <Typography component="h1">Recent Work</Typography>
+        <Typography component="h1">
+          {language === "VI" ? "Công Việc Gần Đây" : "Recent Work"}
+        </Typography>
       </Grid>
 
       <Grid container spacing={2} className="Portfolio__List">
-        <Grid item sm={12} md={6} lg={4} className="Portfolio__Item">
-          <Box className="Img__Box">
-            <img src="https://cdn.vietnambiz.vn/2020/1/15/photo-1579088919332-157908891933486975461.jpg"></img>
-          </Box>
-          <Typography>Education</Typography>
-          <Button onClick={openDetail} Theme={Theme}>
-            View Project
-          </Button>
-        </Grid>
+        {data.map((item, index) => (
+          <Grid
+            item
+            sm={12}
+            md={6}
+            lg={4}
+            className="Portfolio__Item"
+            key={index}
+          >
+            <Box className="Img__Box">
+              <img src={item.image} alt="project"></img>
+            </Box>
+            <Typography>{item.title}</Typography>
+            <Button onClick={openDetail} Theme={Theme} value={index}>
+              {language === "VI" ? "Xem Dự Án" : "View Project"}
+            </Button>
+          </Grid>
+        ))}
       </Grid>
       <PortfolioDetail
         display={showDetail}
+        detail={detail}
         closeDetail={closeDetail}
       ></PortfolioDetail>
     </Container>

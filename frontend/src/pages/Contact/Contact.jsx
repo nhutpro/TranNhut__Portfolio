@@ -12,6 +12,9 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import axios from "axios";
 const Contact = () => {
   const Theme = useTheme();
   const Button = styled.button`
@@ -48,7 +51,27 @@ const Contact = () => {
       left: 0;
     }
   `;
-  return (
+  const [data, setData] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const language = useSelector((state) => state.language.value);
+  console.log(loading);
+  useEffect(() => {
+    const getProfile = async () => {
+      try {
+        setLoading(true);
+        const profile = await axios.get(
+          "http://localhost:5000/profile?lang=" + language
+        );
+        setData(profile.data);
+        setLoading(false);
+      } catch (err) {}
+    };
+    getProfile();
+  }, [language]);
+  console.log(data.socialmedia);
+  return loading ? (
+    <></>
+  ) : (
     <Container
       className="Contact"
       sx={{
@@ -64,7 +87,9 @@ const Contact = () => {
         alignItems="center"
         className="Title__Container"
       >
-        <Typography component="h1">Contact</Typography>
+        <Typography component="h1">
+          {language === "VI" ? "Liên Hệ" : "Contract"}
+        </Typography>
       </Grid>
       <Grid container direction="row" className="Contact__Main">
         <Grid item xs={12} lg={6} className="Contact__Form">
@@ -77,7 +102,7 @@ const Contact = () => {
             autoComplete="off"
           >
             <TextField
-              label="Name"
+              label={language === "VI" ? "Họ Và Tên" : "Name"}
               variant="filled"
               color="primary"
               className="Contact__Input"
@@ -99,7 +124,7 @@ const Contact = () => {
               }}
             />
             <TextField
-              label="Subject"
+              label={language === "VI" ? "Tiêu Đề" : "Subject"}
               variant="filled"
               color="primary"
               className="Contact__Input"
@@ -110,7 +135,7 @@ const Contact = () => {
               }}
             />
             <TextField
-              label="Message"
+              label={language === "VI" ? "Nội Dung" : "Message"}
               variant="filled"
               color="primary"
               className="Contact__Input"
@@ -122,27 +147,49 @@ const Contact = () => {
             />
           </Box>
           {/* <button className="Form__submit">Send Message</button> */}
-          <Button>Send Message</Button>
+          <Button>{language === "VI" ? "Gửi" : "Send Message"}</Button>
         </Grid>
         <Grid item sx={12} lg={6} className="Contact__Info">
           <Container className="Contact__Item" sx={{ padding: 0 }}>
             <Typography component="h2">Email</Typography>
-            <Typography component="p">Tnhut803@gmail.com</Typography>
+            <Typography component="p">{data.email}</Typography>
           </Container>
           <Container className="Contact__Item" sx={{ padding: 0 }}>
-            <Typography component="h2">Phone</Typography>
-            <Typography component="p">0393625460</Typography>
+            <Typography component="h2">
+              {language === "VI" ? "Điện Thoại" : "Phone"}
+            </Typography>
+            <Typography component="p">{data.phone}</Typography>
           </Container>
           <Container className="Contact__Item" sx={{ padding: 0 }}>
-            <Typography component="h2">Follow me</Typography>
-            <Box component="div" sx={{ color: Theme.palette.mainColor.main }}>
-              <Box component="span" className="Contact__Icon">
+            <Typography component="h2">
+              {language === "VI" ? "Theo Dõi Tôi Tại" : "Follow Me"}
+            </Typography>
+            <Box
+              component="div"
+              sx={{ color: Theme.palette.mainColor.main, marginTop: "10px" }}
+            >
+              <Box
+                component="a"
+                href={data.socialmedia.facebook}
+                target="_blank"
+                className="Contact__Icon"
+              >
                 <FacebookOutlinedIcon></FacebookOutlinedIcon>
               </Box>
-              <Box component="span" className="Contact__Icon">
+              <Box
+                component="a"
+                href={data.socialmedia.linkedin}
+                target="_blank"
+                className="Contact__Icon"
+              >
                 <LinkedInIcon></LinkedInIcon>
               </Box>
-              <Box component="span" className="Contact__Icon">
+              <Box
+                component="a"
+                href={data.socialmedia.git}
+                target="_blank"
+                className="Contact__Icon"
+              >
                 <GitHubIcon></GitHubIcon>
               </Box>
             </Box>

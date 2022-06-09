@@ -41,7 +41,9 @@ const Setting = () => {
         alignItems="center"
         className="Title__Container"
       >
-        <Typography component="h1">Setting</Typography>
+        <Typography component="h1">
+          {language === "VI" ? "Cài Đặt" : "Setting"}
+        </Typography>
       </Grid>
       <Box className="Setting__Main">
         <Box>
@@ -49,9 +51,12 @@ const Setting = () => {
             <Typography
               component="span"
               className="Title__Mode"
-              sx={{ color: Theme.palette.mainColor.textColor }}
+              sx={{
+                color: Theme.palette.mainColor.textColor,
+                marginRight: language === "VI" ? "48px" : "58px",
+              }}
             >
-              Mode
+              {language === "VI" ? "Chế Độ" : "Mode"}
             </Typography>
             <ToggleButtonGroup
               color="primary"
@@ -60,13 +65,17 @@ const Setting = () => {
               onChange={handleMode}
               label="Language"
             >
-              <ToggleButton value="light">Light</ToggleButton>
-              <ToggleButton value="dark">Dark</ToggleButton>
+              <ToggleButton value="light">
+                {language === "VI" ? "Sáng" : "Light"}
+              </ToggleButton>
+              <ToggleButton value="dark">
+                {language === "VI" ? "Tối" : "Dark"}
+              </ToggleButton>
             </ToggleButtonGroup>
           </Box>
           <Box sx={{ textAlign: "start", marginTop: "20px" }}>
             <Typography component="span" className="Title__Lang">
-              Language
+              {language === "VI" ? "Ngôn Ngữ" : "Language"}
             </Typography>
             <ToggleButtonGroup
               color="primary"

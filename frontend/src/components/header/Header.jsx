@@ -95,16 +95,24 @@ const Header = () => {
           }}
         >
           <Link to="/">
-            <HeaderItem Theme={Theme}>Home</HeaderItem>
+            <HeaderItem Theme={Theme}>
+              {language === "VI" ? "Trang Chủ" : "Home"}
+            </HeaderItem>
           </Link>
           <Link to="/about">
-            <HeaderItem Theme={Theme}>About</HeaderItem>
+            <HeaderItem Theme={Theme}>
+              {language === "VI" ? "Giới Thiệu" : "About"}
+            </HeaderItem>
           </Link>
           <Link to="/portfolio">
-            <HeaderItem Theme={Theme}>Portfolio</HeaderItem>
+            <HeaderItem Theme={Theme}>
+              {language === "VI" ? "Dự Án" : "Portfolio"}
+            </HeaderItem>
           </Link>
           <Link to="/contact">
-            <HeaderItem Theme={Theme}>Contact</HeaderItem>
+            <HeaderItem Theme={Theme}>
+              {language === "VI" ? "Liên Hệ" : "Contact"}
+            </HeaderItem>
           </Link>
         </List>
         <Link to="/setting">
