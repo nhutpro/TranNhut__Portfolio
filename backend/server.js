@@ -20,7 +20,7 @@ const connectdb = async () => {
   }
 };
 connectdb();
-route(app);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
@@ -32,6 +32,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.get("/", (req, res) => res.send("Please set to production"));
 }
+route(app);
 app.listen(process.env.PORT, () => {
   console.log(`App listening at ${process.env.PORT}`);
 });
