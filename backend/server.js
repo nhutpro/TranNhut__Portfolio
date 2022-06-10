@@ -11,7 +11,7 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+
 const connectdb = async () => {
   try {
     await mongoose.connect(process.env.MONGODB);
@@ -20,7 +20,8 @@ const connectdb = async () => {
   }
 };
 connectdb();
-
+route(app);
+app.use(express.static(path.join(__dirname, "public")));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
@@ -32,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.get("/", (req, res) => res.send("Please set to production"));
 }
-route(app);
+
 app.listen(process.env.PORT, () => {
   console.log(`App listening at ${process.env.PORT}`);
 });
