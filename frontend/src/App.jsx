@@ -12,18 +12,20 @@ import Setting from "./pages/Setting/Setting";
 import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "../src/Styles/Theme";
 import { Typography, Box } from "@mui/material";
-
+import Intro from "./components/intro/Intro";
 import { useSelector } from "react-redux";
-
+import { ToastContainer } from "react-toastify";
 function App() {
   const mode = useSelector((state) => state.mode.value);
 
   const Theme = mode === "light" ? lightTheme : darkTheme;
   return (
     <ThemeProvider theme={Theme}>
+      <Intro></Intro>
       <Box
         className="App"
         sx={{
+          minHeight: "100vh",
           backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
           position: "relative",
         }}
@@ -44,6 +46,7 @@ function App() {
           </Routes>
         </Box>
       </Box>
+      <ToastContainer></ToastContainer>
     </ThemeProvider>
   );
 }

@@ -12,6 +12,7 @@
   }
 
   .Title__Container {
+    margin-top: 10px;
     h1 {
       font-size: $fontSizeLarge;
       font-weight: 600;
@@ -20,15 +21,6 @@
   .Contact__Form {
     .Contact__Input {
       width: 80%;
-      // background-color: $backgroundColor !important;
-      .MuiFilledInput-root {
-        &::after {
-          // border-bottom: 2px solid $mainColor;
-        }
-      }
-      &:focus-within label {
-        // color: $mainColor;
-      }
     }
   }
   .Contact__Info {

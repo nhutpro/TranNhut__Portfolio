@@ -1,13 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import {
-  Container,
-  ListItemText,
-  List,
-  Typography,
-  MenuItem,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Container, List, Typography } from "@mui/material";
+
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactsIcon from "@mui/icons-material/Contacts";
@@ -18,6 +12,7 @@ import { Box, useTheme } from "@mui/material";
 import "./Header.scss";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { set } from "mongoose";
 const HeaderItem = styled.p`
   font-size: 20px;
   margin-left: 2rem;
@@ -41,13 +36,104 @@ const HeaderItem = styled.p`
     width: 100%;
   }
 `;
+const Div = styled.div`
+  .Menu__Main {
+    border: 1px solid ${(props) => props.Theme.palette.mainColor.borderColor};
+    border-radius: 20px;
+    padding: 20px;
+    position: absolute;
+    right: 8px;
+    top: 48px;
+
+    &::after {
+      right: 12px;
+      top: -8px;
+      content: "";
+      position: absolute;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 10px solid ${(props) => props.Theme.palette.mainColor.main};
+      border-radius: 1px;
+      z-index: -1;
+      transform: rotate(16deg);
+    }
+    .Menu__Item {
+      display: flex;
+      margin-top: 10px;
+      align-items: center;
+      justify-content: flex-start;
+      .Item__Icon {
+        width: 40px;
+        height: 40px;
+        background-color: ${(props) =>
+          props.Theme.palette.mainColor.backgroundColor};
+        border: 1px solid
+          ${(props) => props.Theme.palette.mainColor.borderColor};
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .Item__Text {
+        font-size: $fontSizeMedium;
+        margin-left: 20px;
+      }
+    }
+  }
+`;
+const MenuIcon = styled.div`
+  width: 25px;
+  height: 4px;
+  background: ${(props) => props.Theme.palette.mainColor.main};
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 4px;
+    background: ${(props) => props.Theme.palette.mainColor.main};
+    border-radius: 5px;
+    /* box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2); */
+    transition: all 0.2s ease-in-out;
+    left: 0;
+  }
+  &::after {
+    transform: translateY(8px);
+  }
+  &::before {
+    transform: translateY(-8px);
+  }
+  &.open {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+  &.open::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+  &.open::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+`;
 const Header = () => {
   const [open, setOpen] = useState(false);
   const menuELe = useRef(null);
   const language = useSelector((state) => state.language.value);
-
+  const closeButton = useRef(null);
   const showMenu = () => {
-    setOpen((prevValue) => !prevValue);
+    // setOpen((prev) => {
+    //   if (!prev) {
+    //     closeButton.current.classList.add("open");
+    //   } else {
+    //     closeButton.current.classList.remove("open");
+    //   }
+    //   return !prev;
+    // });
+    setOpen((prev) => !prev);
   };
   const closeMenu = () => {
     setOpen(false);
@@ -133,83 +219,84 @@ const Header = () => {
         sx={{ color: Theme.palette.mainColor.main }}
       >
         <Box className="Menu__Icon" onClick={showMenu}>
-          <MenuIcon></MenuIcon>
+          <MenuIcon Theme={Theme} className={open ? "open" : ""}></MenuIcon>
         </Box>
-        <Box
-          className={open ? "Menu__Main" : "Menu__Main displayHide"}
-          sx={{
-            zIndex: 1,
-            backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
-            border: `1px solid ${Theme.palette.mainColor.borderColor}`,
-          }}
-        >
-          <Link
-            to="/"
-            onClick={() => {
-              setOpen(false);
+        <Div Theme={Theme}>
+          <Box
+            className={open ? "Menu__Main" : "Menu__Main displayHide"}
+            sx={{
+              backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
+              border: `1px solid ${Theme.palette.mainColor.borderColor}`,
             }}
           >
-            <Box className="Menu__Item">
-              <Box className="Item__Icon">
-                <HomeIcon></HomeIcon>
+            <Link
+              to="/"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <Box className="Menu__Item">
+                <Box className="Item__Icon">
+                  <HomeIcon></HomeIcon>
+                </Box>
+                <Typography className="Item__Text">Home</Typography>
               </Box>
-              <Typography className="Item__Text">Home</Typography>
-            </Box>
-          </Link>
+            </Link>
 
-          <Link
-            to="/about"
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            <Box className="Menu__Item">
-              <Box className="Item__Icon">
-                <InfoIcon></InfoIcon>
+            <Link
+              to="/about"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <Box className="Menu__Item">
+                <Box className="Item__Icon">
+                  <InfoIcon></InfoIcon>
+                </Box>
+                <Typography className="Item__Text">About</Typography>
               </Box>
-              <Typography className="Item__Text">About</Typography>
-            </Box>
-          </Link>
-          <Link
-            to="/portfolio"
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            <Box className="Menu__Item">
-              <Box className="Item__Icon">
-                <AccountTreeIcon></AccountTreeIcon>
+            </Link>
+            <Link
+              to="/portfolio"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <Box className="Menu__Item">
+                <Box className="Item__Icon">
+                  <AccountTreeIcon></AccountTreeIcon>
+                </Box>
+                <Typography className="Item__Text">Portfolio</Typography>
               </Box>
-              <Typography className="Item__Text">Portfolio</Typography>
-            </Box>
-          </Link>
-          <Link
-            to="/contact"
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            <Box className="Menu__Item">
-              <Box className="Item__Icon">
-                <ContactsIcon></ContactsIcon>
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <Box className="Menu__Item">
+                <Box className="Item__Icon">
+                  <ContactsIcon></ContactsIcon>
+                </Box>
+                <Typography className="Item__Text">Contact</Typography>
               </Box>
-              <Typography className="Item__Text">Contact</Typography>
-            </Box>
-          </Link>
-          <Link
-            to="/setting"
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            <Box className="Menu__Item">
-              <Box className="Item__Icon">
-                <SettingsIcon></SettingsIcon>
+            </Link>
+            <Link
+              to="/setting"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <Box className="Menu__Item">
+                <Box className="Item__Icon">
+                  <SettingsIcon></SettingsIcon>
+                </Box>
+                <Typography className="Item__Text">Setting</Typography>
               </Box>
-              <Typography className="Item__Text">Setting</Typography>
-            </Box>
-          </Link>
-        </Box>
+            </Link>
+          </Box>
+        </Div>
       </Box>
     </Box>
   );

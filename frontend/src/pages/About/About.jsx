@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./About.scss";
-import { Container, Typography, Grid, useTheme } from "@mui/material";
+import { Container, Typography, Grid, useTheme, Skeleton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -146,7 +146,7 @@ const About = () => {
   const handleDownload = () => {
     const getCV = async () => {
       const CV = await axios({
-        url: "http://localhost:5000/download",
+        url: process.env.REACT_APP_SERVER + "/download",
         method: "GET",
         responseType: "blob",
       });
@@ -159,7 +159,7 @@ const About = () => {
       try {
         setLoading(true);
         const profile = await axios.get(
-          "http://localhost:5000/profile?lang=" + language
+          process.env.REACT_APP_SERVER + "/profile?lang=" + language
         );
 
         setData(profile.data);
@@ -170,7 +170,124 @@ const About = () => {
   }, [language]);
 
   return loading ? (
-    <></>
+    <Container
+      className="About__Container"
+      sx={{
+        backgroundColor: Theme.palette.mainColor.backgroundColor,
+        border: `1px solid ${Theme.palette.mainColor.borderColor}`,
+        color: Theme.palette.mainColor.textColor,
+      }}
+    >
+      <Div Theme={Theme}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          className="Title__Container"
+        >
+          <Typography component="h1">
+            <Skeleton variant="text" width={100} height={35}></Skeleton>
+          </Typography>
+        </Grid>
+
+        <Grid container spacing={3} className="About__Main">
+          <Grid item xs={12} lg={4} className="About__Img">
+            <Container className="Img__Box">
+              <Skeleton></Skeleton>
+            </Container>
+          </Grid>
+          <Grid item xs={12} lg={8} className="About__Text">
+            <Typography component="p" className="About__Des">
+              <Skeleton></Skeleton>
+            </Typography>
+            <Container className="About__Skills">
+              <Typography component="h2">
+                <Skeleton></Skeleton>
+              </Typography>
+              <Skeleton varient="text" width={"100%"} height={50}></Skeleton>
+            </Container>
+
+            <Container className="About__Tabs" sx={{ padding: 0 }}>
+              {/* <button
+                className={
+                  tab === "education" ? "Tab__Item active" : "Tab__Item"
+                }
+                value="education"
+                onClick={handleButton}
+              >
+                {language === "VI" ? "Học Vấn" : "Education"}
+              </button>
+              <button
+                className={
+                  tab === "experience" ? "Tab__Item active" : "Tab__Item"
+                }
+                value="experience"
+                onClick={handleButton}
+              >
+                {language === "VI" ? "Kinh Nghiệm" : "Experience"}
+              </button> */}
+            </Container>
+
+            <Container
+              className={
+                tab === "education"
+                  ? "About__Timeline"
+                  : "About__Timeline displayNone"
+              }
+              sx={{ padding: 0 }}
+            >
+              <Skeleton
+                variant="rectangular"
+                height={300}
+                width={"100%"}
+              ></Skeleton>
+            </Container>
+            <Container
+              className={
+                tab === "experience"
+                  ? "About__Timeline"
+                  : "About__Timeline displayNone"
+              }
+              sx={{ padding: 0 }}
+            >
+              {/* {data.experience.map((item, index) => (
+                <Container
+                  className="timeline__item"
+                  key={index}
+                  sx={{ padding: 0 }}
+                >
+                  <Typography component="span" className="date">
+                    {moment(item.start).format("YYYY")} -{" "}
+                    {moment(item.end).format("YYYY")}
+                  </Typography>
+                  <Typography component="h4">
+                    {item.position}
+                    <Typography component="span">
+                      {" in " + item.company}
+                    </Typography>
+                  </Typography>
+               
+                </Container>
+              ))} */}
+            </Container>
+
+            <Container className="About__Btns">
+              <Link to="/about">
+                <Button Theme={Theme} onClick={handleDownload}>
+                  <Skeleton variant="text" width={100} height={30} />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button Theme={Theme}>
+                  <Skeleton variant="text" width={100} height={30} />
+                </Button>
+              </Link>
+            </Container>
+          </Grid>
+        </Grid>
+      </Div>
+    </Container>
   ) : (
     <Container
       className="About__Container"
@@ -257,9 +374,6 @@ const About = () => {
                     {item.certificate}{" "}
                     <Typography component="span">{item.school}</Typography>
                   </Typography>
-                  {/* <Typography component="p">
-                  I have lots of nice memory in here
-                </Typography> */}
                 </Container>
               ))}
             </Container>

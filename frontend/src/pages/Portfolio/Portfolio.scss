@@ -15,6 +15,7 @@
   }
 
   .Title__Container {
+    margin-top: 10px;
     h1 {
       font-size: $fontSizeLarge;
       font-weight: 600;
@@ -23,6 +24,7 @@
   .Portfolio__List {
     @include mobile {
       margin-top: 20px;
+      overflow-y: scroll;
     }
     .Portfolio__Item {
       margin-top: 10px;
@@ -31,6 +33,9 @@
         background-color: $backgroundColor;
         border: 1px solid $backgroundBoder;
         border-radius: 20px;
+        @include mobile {
+          margin: 0 10px 0 10px;
+        }
         img {
           border-radius: 20px;
           width: 100%;

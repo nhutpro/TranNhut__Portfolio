@@ -6,14 +6,15 @@ const morgan = require("morgan");
 const app = express();
 var path = require("path");
 app.use(morgan("combined"));
+
 require("dotenv").config();
 app.use(cors());
+app.use(express.urlencoded());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 const connectdb = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://Nhutpro:Trannhut1@cluster0.pc6gvu6.mongodb.net/portfolio?retryWrites=true&w=majority"
-    );
+    await mongoose.connect(process.env.MONGODB);
   } catch (error) {
     console.log("connect database failse!!");
   }

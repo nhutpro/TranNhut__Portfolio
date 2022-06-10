@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Container, Box, Typography, Grid, useTheme } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  Grid,
+  useTheme,
+  Skeleton,
+} from "@mui/material";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import "./Portfolio.scss";
@@ -58,7 +65,7 @@ const Portfolio = () => {
     const getProject = async () => {
       setLoading(true);
       const Project = await axios.get(
-        "http://localhost:5000/project?lang=" + language
+        process.env.REACT_APP_SERVER + "/project?lang=" + language
       );
 
       setData(Project.data);
@@ -67,7 +74,61 @@ const Portfolio = () => {
     getProject();
   }, [language]);
   return loading ? (
-    <></>
+    <Container
+      className="Portfolio__Container"
+      sx={{
+        position: "relative",
+        zIndex: 0,
+      }}
+    >
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        className="Title__Container"
+      >
+        <Typography component="h1">
+          <Skeleton variant="text" width={100} height={35}></Skeleton>
+        </Typography>
+      </Grid>
+
+      <Grid container spacing={3} className="Portfolio__List">
+        <Grid item sm={12} md={6} lg={4} className="Portfolio__Item">
+          <Box className="Img__Box" sx={{ width: "100%", height: "200px" }}>
+            <Skeleton variant="text" width={"100%"} height={"100%"} />
+          </Box>
+          <Typography>
+            <Skeleton></Skeleton>
+          </Typography>
+          <Button Theme={Theme}>
+            <Skeleton variant="text" width={100} height={30} />
+          </Button>
+        </Grid>
+        <Grid item sm={12} md={6} lg={4} className="Portfolio__Item">
+          <Box className="Img__Box" sx={{ width: "100%", height: "200px" }}>
+            <Skeleton variant="text" width={"100%"} height={"100%"} />
+          </Box>
+          <Typography>
+            <Skeleton></Skeleton>
+          </Typography>
+          <Button Theme={Theme}>
+            <Skeleton variant="text" width={100} height={30} />
+          </Button>
+        </Grid>
+        <Grid item sm={12} md={6} lg={4} className="Portfolio__Item">
+          <Box className="Img__Box" sx={{ width: "100%", height: "200px" }}>
+            <Skeleton variant="text" width={"100%"} height={"100%"} />
+          </Box>
+          <Typography>
+            <Skeleton></Skeleton>
+          </Typography>
+          <Button Theme={Theme}>
+            <Skeleton variant="text" width={100} height={30} />
+          </Button>
+        </Grid>
+      </Grid>
+    </Container>
   ) : (
     <Container
       className="Portfolio__Container"

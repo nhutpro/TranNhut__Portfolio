@@ -14,6 +14,7 @@ const lightTheme = createTheme({
       titleColor: "#8a2435",
       textColor: "#18293c",
       buttonHover: "#ffffff",
+      errorColor: "#ff3333",
     },
   },
 });
@@ -31,6 +32,7 @@ const darkTheme = createTheme({
       titleColor: "#eeeeee",
       textColor: "#f5f5f5",
       buttonHover: "#212121",
+      errorColor: "#eaeaea",
     },
   },
 });

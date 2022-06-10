@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import Skeleton from "@mui/material/Skeleton";
 const Button = styled.button`
   list-style: 1.5rem;
   font-size: 20px;
@@ -54,7 +55,7 @@ const Home = () => {
       try {
         setLoading(true);
         const profile = await axios.get(
-          "http://localhost:5000/profile?lang=" + language
+          process.env.REACT_APP_SERVER + "/profile?lang=" + language
         );
 
         setData(profile.data);
@@ -65,7 +66,53 @@ const Home = () => {
   }, [language]);
 
   return loading ? (
-    <></>
+    <Container
+      className="Home__container"
+      sx={{
+        backgroundColor: Theme.palette.mainColor.backgroundColor,
+        border: `1px solid ${Theme.palette.mainColor.borderColor}`,
+      }}
+    >
+      <Container className="Home__main">
+        <Container
+          className="Home__text"
+          sx={{ color: Theme.palette.mainColor.textColor }}
+        >
+          <Typography component="p">
+            <Skeleton />
+          </Typography>
+          <Typography component="h1">
+            <Skeleton />
+          </Typography>
+          <Typography component="h2">
+            <Skeleton />
+          </Typography>
+          <Container className="Home__btn">
+            <Link to="/about">
+              <Button Theme={Theme}>
+                <Skeleton variant="text" width={100} height={30} />
+              </Button>
+            </Link>
+            <Link to="/portfolio">
+              <Button Theme={Theme}>
+                <Skeleton variant="text" width={100} height={30} />
+              </Button>
+            </Link>
+          </Container>
+        </Container>
+        <Container className="Home__img">
+          <Container
+            className="img__box"
+            sx={{
+              backgroundColor: Theme.palette.mainColor.backgroundColor,
+              border: `1px solid ${Theme.palette.mainColor.borderColor}`,
+            }}
+          >
+            <Skeleton variant="circular" />
+          </Container>
+        </Container>
+      </Container>
+    </Container>
   ) : (
     <Container
       className="Home__container"

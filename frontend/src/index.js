@@ -9,7 +9,9 @@ import { ThemeProvider } from "@emotion/react";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../src/redux/store";
 import { Provider } from "react-redux";
+import Intro from "./components/intro/Intro";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

@@ -34,40 +34,6 @@
       h2 {
         font-size: $fontSizeLarge;
       }
-      // button {
-      //   list-style: 1.5rem;
-      //   font-size: $fontSizeMedium;
-      //   background-color: $backgroundColor;
-      //   border: 1px solid $backgroundBoder;
-      //   // color: $mainColor;
-      //   border-radius: 1rem;
-      //   padding: 0.5rem 1rem;
-      //   margin-left: 1rem;
-      //   margin-top: 1rem;
-      //   position: relative;
-      //   &:hover {
-      //     cursor: pointer;
-      //   }
-      //   &::before {
-      //     content: "";
-      //     position: absolute;
-      //     background-color: $mainColor;
-      //     width: 0%;
-      //     height: 100%;
-      //     border-radius: 1rem;
-      //     left: 50%;
-      //     top: 0;
-      //     z-index: -1;
-      //     transition: all 0.3s ease-in-out;
-      //   }
-      //   &:hover {
-      //     color: white;
-      //   }
-      //   &:hover::before {
-      //     width: 100%;
-      //     left: 0;
-      //   }
-      // }
     }
     .Home__img {
       width: 50%;
@@ -80,26 +46,20 @@
       .img__box {
         width: 360px;
         height: 360px;
-        // background-color: $backgroundColor;
         border-radius: 50%;
-        // border: 8px solid $backgroundColor;
         padding: 1rem 1rem;
         text-align: center;
         display: flex;
         justify-content: center;
         text-align: center;
+        @include tablet {
+          width: 300px;
+          height: 300px;
+        }
         @include mobile {
           width: 300px;
           height: 300px;
         }
-        // img {
-        //   width: 80%;
-        //   height: 80%;
-        //   margin-top: 50px;
-        //   @include mobile {
-        //     margin: 2rem;
-        //   }
-        // }
       }
     }
   }

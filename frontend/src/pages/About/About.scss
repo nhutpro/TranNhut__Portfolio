@@ -12,6 +12,7 @@
   }
 
   .Title__Container {
+    margin-top: 10px;
     h1 {
       font-size: $fontSizeLarge;
       font-weight: 600;
@@ -23,8 +24,8 @@
         margin-top: 20px;
       }
       .Img__Box {
-        height: 360px;
-        width: 360px;
+        height: 300px;
+        width: 300px;
         background-color: $backgroundColor;
         border-radius: 20px;
         @include mobile {
