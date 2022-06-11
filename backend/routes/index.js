@@ -10,7 +10,12 @@ function route(app) {
   });
   app.get("/api/project", ProjectController.getProject);
   app.get("/api/download", (req, res) => {
-    const file = path.join(__dirname, "..", "public", "test.jpg");
+    const file = path.join(
+      __dirname,
+      "..",
+      "public",
+      "CV_TranNhut_Full-Stack.pdf"
+    );
     res.download(file);
   });
 }

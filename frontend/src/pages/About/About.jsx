@@ -150,7 +150,7 @@ const About = () => {
         method: "GET",
         responseType: "blob",
       });
-      FileDownload(CV.data, "test.jpg");
+      FileDownload(CV.data, "CV_TranNhut_Full-Stack.pdf");
     };
     getCV();
   };
