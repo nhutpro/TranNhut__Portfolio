@@ -163,12 +163,13 @@ const About = () => {
         );
 
         setData(profile.data);
+
         setLoading(false);
       } catch (err) {}
     };
     getProfile();
   }, [language]);
-
+  console.log(data);
   return loading ? (
     <Container
       className="About__Container"
@@ -313,7 +314,7 @@ const About = () => {
         <Grid container spacing={3} className="About__Main">
           <Grid item xs={12} lg={4} className="About__Img">
             <Container className="Img__Box">
-              <img src="/image/profile.png" alt="personal__img"></img>
+              <img src={data.image.about} alt="personal__img"></img>
             </Container>
           </Grid>
           <Grid item xs={12} lg={8} className="About__Text">
@@ -371,8 +372,12 @@ const About = () => {
                     {moment(item.end).format("YYYY")}
                   </Typography>
                   <Typography component="h4">
-                    {item.certificate}{" "}
-                    <Typography component="span">{item.school}</Typography>
+                    {item.certificate}
+
+                    <Typography component="span">
+                      {" "}
+                      {language === "VI" ? " tại " : " in "} {item.school}
+                    </Typography>
                   </Typography>
                 </Container>
               ))}

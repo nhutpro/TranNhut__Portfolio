@@ -1,9 +1,10 @@
 import { React } from "react";
-import { Container, Typography, Box, useTheme } from "@mui/material";
+import { Typography, Box, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import styled from "styled-components";
 import "./PortfolioDetail.scss";
+import { useRef } from "react";
 const Button = styled.button`
   background-color: ${(props) => props.Theme.palette.mainColor.backgroundColor};
   border: 1px solid ${(props) => props.Theme.palette.mainColor.backgroundColor};
@@ -13,16 +14,37 @@ const Button = styled.button`
   position: absolute;
   top: -15px;
   right: -10px;
-  color: ${(props) => props.Theme.palette.mainColor.mainColor};
+  color: ${(props) => props.Theme.palette.mainColor.main};
+  transform: all 0.5s ease;
+  span {
+    transition: all 0.5s ease;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  &:hover {
+    transform: scale(105%);
+    span {
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
 `;
 
 const PortfolioDetail = ({ display, closeDetail, detail }) => {
   const Theme = useTheme();
-  // const language = useSelector((state) => state.language.value);
+  const language = useSelector((state) => state.language.value);
+  const portfolioEle = useRef(null);
+  const handleClick = (e) => {
+    if (portfolioEle.current && !portfolioEle.current.contains(e.target)) {
+      closeDetail();
+    }
+  };
   return !detail ? (
     <></>
   ) : (
     <Box
+      onClick={handleClick}
       className={
         display
           ? "PortfolioDetail__Container"
@@ -33,37 +55,34 @@ const PortfolioDetail = ({ display, closeDetail, detail }) => {
         backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
       }}
     >
-      <Box className="PortfolioDetail__Main">
+      <Box className="PortfolioDetail__Main" ref={portfolioEle}>
         <Box className="PortfolioDetail__Img">
           <img src={detail.image} alt="ảnh" />
         </Box>
         <Box className="PortfolioDetail__Text">
-          <Typography component="h2" className="Project__Name">
-            {detail.title}
-          </Typography>
           <Typography component="p" className="Project__Des">
             {detail.description}
           </Typography>
           <Typography component="p" className="Text--Bold">
-            Create -{" "}
-            <Typography component="span" className="Text--Bold">
-              Time {moment(detail.time).format("DD/MM/YYYY")}
+            {language === "VI" ? "Thời Gian Tạo: " : "Create-Time: "}
+            <Typography component="span" className="Text--Normal">
+              {moment(detail.time).format("DD/MM/YYYY")}
             </Typography>
           </Typography>
           <Typography component="p" className="Text--Bold">
-            Technologies Used -{" "}
-            <Typography component="span" className="Text--Bold">
+            {language === "VI" ? "Công Nghệ Sử Dụng: " : "Technologies: "}
+            <Typography component="span" className="Text--Normal">
               {detail.technology}
             </Typography>
           </Typography>
           <Typography component="p" className="Text--Bold">
-            Role -
-            <Typography component="span" className="Text--Bold">
+            {language === "VI" ? "Vai Trò: " : "Role: "}
+            <Typography component="span" className="Text--Normal">
               {detail.role}
             </Typography>
           </Typography>
           <Typography component="p" className="Text--Bold">
-            View Online -
+            {language === "VI" ? "Xem Website: " : "Visit Website: "}
             <Typography
               component="a"
               href={detail.website}
@@ -79,7 +98,7 @@ const PortfolioDetail = ({ display, closeDetail, detail }) => {
           className="button--close"
           onClick={() => closeDetail()}
         >
-          X
+          <span>X</span>
         </Button>
       </Box>
     </Box>

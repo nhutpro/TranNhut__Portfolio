@@ -4,7 +4,12 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { lightTheme } from "../../Styles/Theme";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 const SpanEffect = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   span.active {
     opacity: 1;
     transform: translateY(0);
@@ -19,6 +24,7 @@ const SpanEffect = styled.div`
 const Intro = () => {
   const Theme = useTheme();
   const IntroEle = useRef(null);
+  const language = useSelector((state) => state.language.value);
   useEffect(() => {
     const span = IntroEle.current.querySelectorAll("span");
     span.forEach((item, index) => {
@@ -30,7 +36,7 @@ const Intro = () => {
       setTimeout(() => {
         item.classList.remove("active");
         item.classList.add("fade");
-      }, 2000);
+      }, 2400);
     });
     setTimeout(() => {
       IntroEle.current.style.top = "-100vh";
@@ -68,7 +74,7 @@ const Intro = () => {
             opacity: 0,
           }}
         >
-          Welcome
+          {language === "VI" ? "Chào Mừng" : "Welcome"}
         </Typography>
         <Typography
           component={"span"}
@@ -81,7 +87,7 @@ const Intro = () => {
             opacity: 0,
           }}
         >
-          To
+          {language === "VI" ? "Đến" : "To"}
         </Typography>
         <Typography
           component={"span"}
@@ -94,7 +100,20 @@ const Intro = () => {
             opacity: 0,
           }}
         >
-          See
+          {language === "VI" ? "Xem" : "Visit"}
+        </Typography>
+        <Typography
+          component={"span"}
+          sx={{
+            display: "inline-block",
+            paddingRight: "10px",
+            fontSize: "30px",
+            fontWeight: 700,
+            opacity: 0,
+            transform: "translateY(-35px)",
+          }}
+        >
+          {language === "VI" ? "Website" : "My"}
         </Typography>
         <Typography
           component={"span"}
@@ -103,9 +122,10 @@ const Intro = () => {
             fontSize: "30px",
             fontWeight: 700,
             opacity: 0,
+            transform: "translateY(-35px)",
           }}
         >
-          Portfolio
+          {language === "VI" ? "Của Tôi" : "Portfolio"}
         </Typography>
       </SpanEffect>
     </Box>

@@ -93,7 +93,7 @@ const Portfolio = () => {
         </Typography>
       </Grid>
 
-      <Grid container spacing={3} className="Portfolio__List">
+      <Grid container className="Portfolio__List">
         <Grid item sm={12} md={6} lg={4} className="Portfolio__Item">
           <Box className="Img__Box" sx={{ width: "100%", height: "200px" }}>
             <Skeleton variant="text" width={"100%"} height={"100%"} />

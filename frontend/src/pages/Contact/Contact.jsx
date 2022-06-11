@@ -57,24 +57,37 @@ const Button = styled.button`
   }
 `;
 const Contact = () => {
+  const language = useSelector((state) => state.language.value);
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = "Trường Này Không Được Để Trống";
+      errors.name =
+        language === "VI"
+          ? "Trường Này Không Được Để Trống"
+          : "This Information Is Required";
     }
 
     if (!values.email) {
-      errors.email = "Trường Này Không Được Để Trống";
+      errors.email =
+        language === "VI"
+          ? "Trường Này Không Được Để Trống"
+          : "This Information Is Required";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
     ) {
-      errors.email = "Email Không Hợp Lệ";
+      errors.email = language === "VI" ? "Email Không Hợp Lệ" : "Invalid Email";
     }
     if (!values.subject) {
-      errors.subject = "Trường Này Không Được Để Trống";
+      errors.subject =
+        language === "VI"
+          ? "Trường Này Không Được Để Trống"
+          : "This Information Is Required";
     }
     if (!values.message) {
-      errors.message = "Trường Này Không Được Để Trống";
+      errors.message =
+        language === "VI"
+          ? "Trường Này Không Được Để Trống"
+          : "This Information Is Required";
     }
 
     return errors;
@@ -118,7 +131,6 @@ const Contact = () => {
 
   const [data, setData] = useState(false);
   const [loading, setLoading] = useState(true);
-  const language = useSelector((state) => state.language.value);
 
   useEffect(() => {
     const getProfile = async () => {

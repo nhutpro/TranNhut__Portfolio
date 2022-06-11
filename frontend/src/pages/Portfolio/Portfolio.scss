@@ -28,6 +28,9 @@
     }
     .Portfolio__Item {
       margin-top: 10px;
+      @include mobile {
+        width: 100%;
+      }
       .Img__Box {
         padding: 10px;
         background-color: $backgroundColor;
@@ -39,7 +42,7 @@
         img {
           border-radius: 20px;
           width: 100%;
-          height: 100%;
+          height: 200px;
         }
       }
       p {

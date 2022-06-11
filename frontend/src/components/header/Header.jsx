@@ -44,7 +44,7 @@ const Div = styled.div`
     position: absolute;
     right: 8px;
     top: 48px;
-
+    width: 200px;
     &::after {
       right: 12px;
       top: -8px;
@@ -192,7 +192,7 @@ const Header = () => {
           </Link>
           <Link to="/portfolio">
             <HeaderItem Theme={Theme}>
-              {language === "VI" ? "Dự Án" : "Portfolio"}
+              {language === "VI" ? "Dự Án" : "Project"}
             </HeaderItem>
           </Link>
           <Link to="/contact">
@@ -239,7 +239,9 @@ const Header = () => {
                 <Box className="Item__Icon">
                   <HomeIcon></HomeIcon>
                 </Box>
-                <Typography className="Item__Text">Home</Typography>
+                <Typography className="Item__Text">
+                  {language === "VI" ? "Trang Chủ" : "Home"}
+                </Typography>
               </Box>
             </Link>
 
@@ -253,7 +255,9 @@ const Header = () => {
                 <Box className="Item__Icon">
                   <InfoIcon></InfoIcon>
                 </Box>
-                <Typography className="Item__Text">About</Typography>
+                <Typography className="Item__Text">
+                  {language === "VI" ? "Giới Thiệu" : "About"}
+                </Typography>
               </Box>
             </Link>
             <Link
@@ -266,7 +270,9 @@ const Header = () => {
                 <Box className="Item__Icon">
                   <AccountTreeIcon></AccountTreeIcon>
                 </Box>
-                <Typography className="Item__Text">Portfolio</Typography>
+                <Typography className="Item__Text">
+                  {language === "VI" ? "Dự Án" : "Project"}
+                </Typography>
               </Box>
             </Link>
             <Link
@@ -279,7 +285,9 @@ const Header = () => {
                 <Box className="Item__Icon">
                   <ContactsIcon></ContactsIcon>
                 </Box>
-                <Typography className="Item__Text">Contact</Typography>
+                <Typography className="Item__Text">
+                  {language === "VI" ? "Liên Hệ" : "Contact"}
+                </Typography>
               </Box>
             </Link>
             <Link
@@ -292,7 +300,9 @@ const Header = () => {
                 <Box className="Item__Icon">
                   <SettingsIcon></SettingsIcon>
                 </Box>
-                <Typography className="Item__Text">Setting</Typography>
+                <Typography className="Item__Text">
+                  {language === "VI" ? "Cài Đặt" : "Setting"}
+                </Typography>
               </Box>
             </Link>
           </Box>
