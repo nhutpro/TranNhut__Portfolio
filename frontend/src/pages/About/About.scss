@@ -44,7 +44,7 @@
       }
       .About__Des {
         @include mobile {
-          text-align: center;
+          text-align: justify;
         }
       }
       h2 {
