@@ -10,13 +10,13 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import "./Setting.scss";
 const Setting = () => {
   const currentMode = useSelector((state) => state.mode.value);
-  const currentLang = useSelector((state) => state.language.value);
+  const language = useSelector((state) => state.language.value);
   const dispatch = useDispatch();
 
   const [mode, setMode] = useState(currentMode);
-  const [language, setLanguage] = useState(currentLang);
+  // const [language, setLanguage] = useState(currentLang);
   const handleLang = (e) => {
-    setLanguage(e.target.value);
+    // setLanguage(e.target.value);
     dispatch(setLanguageValue(e.target.value));
   };
   const handleMode = (e) => {

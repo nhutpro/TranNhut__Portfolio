@@ -78,7 +78,6 @@ const Portfolio = () => {
       className="Portfolio__Container"
       sx={{
         position: "relative",
-        zIndex: 0,
       }}
     >
       <Grid
@@ -146,7 +145,7 @@ const Portfolio = () => {
         className="Title__Container"
       >
         <Typography component="h1">
-          {language === "VI" ? "Công Việc Gần Đây" : "Recent Work"}
+          {language === "VI" ? "Dự Án Gần Đây" : "Recent Work"}
         </Typography>
       </Grid>
 

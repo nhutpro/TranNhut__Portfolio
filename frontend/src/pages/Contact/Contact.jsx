@@ -20,7 +20,7 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Button = styled.button`
-  width: 30%;
+  min-width: 30%;
   list-style: 1.5rem;
   font-size: 20px;
   background-color: ${(props) => props.Theme.palette.mainColor.backgroundColor};

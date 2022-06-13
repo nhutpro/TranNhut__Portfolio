@@ -22,15 +22,27 @@
     }
   }
   .Portfolio__List {
+    @include tablet {
+      margin-top: 20px;
+      overflow-y: scroll;
+      justify-content: center;
+    }
     @include mobile {
       margin-top: 20px;
       overflow-y: scroll;
+      padding-bottom: 20px;
     }
     .Portfolio__Item {
       margin-top: 10px;
+      @include tablet {
+        width: 80%;
+        max-width: 80%;
+      }
       @include mobile {
         width: 100%;
+        max-width: 100%;
       }
+
       .Img__Box {
         padding: 10px;
         background-color: $backgroundColor;

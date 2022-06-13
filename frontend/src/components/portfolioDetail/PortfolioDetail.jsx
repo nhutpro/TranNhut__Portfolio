@@ -16,6 +16,7 @@ const Button = styled.button`
   right: -10px;
   color: ${(props) => props.Theme.palette.mainColor.main};
   transform: all 0.5s ease;
+
   span {
     transition: all 0.5s ease;
     font-size: 20px;
@@ -53,6 +54,7 @@ const PortfolioDetail = ({ display, closeDetail, detail }) => {
       sx={{
         color: Theme.palette.mainColor.textColor,
         backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
+        zIndex: 2,
       }}
     >
       <Box className="PortfolioDetail__Main" ref={portfolioEle}>

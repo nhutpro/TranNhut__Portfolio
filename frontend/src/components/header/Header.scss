@@ -15,39 +15,48 @@
   // .Header__item {
 
   // }
-  .Setting {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    position: absolute;
-    top: 32px;
-    right: 110px;
-    transition: all ease 0.3s;
-    @include tablet {
-      top: 32px;
-      right: 4px;
-    }
-    &:hover {
-      transform: scale(110%);
-      svg {
-        animation: rotation ease 1s infinite;
-      }
-    }
-    @keyframes rotation {
-      from {
-        transform: rotate(0);
-      }
-      to {
-        transform: rotate(359);
-      }
-    }
-  }
 
   @include mobile {
     display: none !important;
+  }
+  @include tablet {
+    display: none !important;
+  }
+}
+.Setting__Language {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 32px;
+  right: 75px;
+  transition: all ease 0.3s;
+  z-index: 1;
+  @include tablet {
+    top: 50px;
+    left: 106px;
+  }
+  @include mobile {
+    display: block;
+    top: 60px;
+    left: 20px;
+  }
+  &:hover {
+    transform: scale(110%);
+    svg {
+      animation: rotation ease 1s infinite;
+    }
+  }
+  @keyframes rotation {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(359);
+    }
   }
 }
 .Menu__Container {
@@ -55,10 +64,16 @@
   position: absolute;
   right: 28px;
   top: 48px;
-  z-index: 3;
-
+  z-index: 1;
+  @include tablet {
+    display: block;
+    top: 50px;
+    right: 106px;
+  }
   @include mobile {
     display: block;
+    top: 50px;
+    right: 20px;
   }
 
   .Menu__Icon {

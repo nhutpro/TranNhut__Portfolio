@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { Container, List, Typography } from "@mui/material";
+import {
+  Container,
+  List,
+  Typography,
+  ToggleButtonGroup,
+  ToggleButton,
+} from "@mui/material";
 
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
@@ -10,7 +16,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Link } from "react-router-dom";
 import { Box, useTheme } from "@mui/material";
 import "./Header.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setLanguageValue } from "../../redux/language";
 import styled from "styled-components";
 import { set } from "mongoose";
 const HeaderItem = styled.p`
@@ -120,9 +127,12 @@ const MenuIcon = styled.div`
   }
 `;
 const Header = () => {
-  const [open, setOpen] = useState(false);
-  const menuELe = useRef(null);
   const language = useSelector((state) => state.language.value);
+  const [open, setOpen] = useState(false);
+  // const [language, setLanguage] = useState(currentLanguage);
+  const menuELe = useRef(null);
+  const dispatch = useDispatch();
+
   const closeButton = useRef(null);
   const showMenu = () => {
     // setOpen((prev) => {
@@ -138,7 +148,10 @@ const Header = () => {
   const closeMenu = () => {
     setOpen(false);
   };
-
+  const handleLang = (e) => {
+    // setLanguage(e.target.value);
+    dispatch(setLanguageValue(e.target.value));
+  };
   const Theme = useTheme();
 
   useEffect(() => {
@@ -200,19 +213,26 @@ const Header = () => {
               {language === "VI" ? "Liên Hệ" : "Contact"}
             </HeaderItem>
           </Link>
+          <Link to="/setting">
+            <HeaderItem Theme={Theme}>
+              {language === "VI" ? "Cài Đặt" : "Setting"}
+            </HeaderItem>
+          </Link>
         </List>
-        <Link to="/setting">
-          <Box
-            className="Setting"
-            sx={{
-              backgroundColor: Theme.palette.mainColor.backgroundColor,
-              border: `1px solid ${Theme.palette.mainColor.borderColor}`,
-            }}
-          >
-            <SettingsIcon></SettingsIcon>
-          </Box>
-        </Link>
       </Container>
+      <Box className="Setting__Language">
+        <ToggleButtonGroup
+          color="primary"
+          value={language}
+          exclusive
+          onChange={handleLang}
+          label="Language"
+          sx={{ height: "30px" }}
+        >
+          <ToggleButton value="EN">EN</ToggleButton>
+          <ToggleButton value="VI">VI</ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
       <Box
         className="Menu__Container"
         ref={menuELe}
