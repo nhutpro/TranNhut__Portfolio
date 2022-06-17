@@ -131,6 +131,11 @@ const Logo = styled.div`
   justify-content: center;
   align-items: center;
   transition: all 1s ease-in-out;
+  a {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
   img {
     width: 50px;
     height: 50px;
