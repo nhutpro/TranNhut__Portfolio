@@ -169,7 +169,7 @@ const About = () => {
     };
     getProfile();
   }, [language]);
-  console.log(data);
+
   return loading ? (
     <Container
       className="About__Container"

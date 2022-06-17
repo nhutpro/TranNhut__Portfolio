@@ -28,6 +28,7 @@ function App() {
           minHeight: "100vh",
           backgroundImage: `linear-gradient(to bottom right, ${Theme.palette.mainColor.backgroundImageOne}, ${Theme.palette.mainColor.backgroundImageTwo})`,
           position: "relative",
+          transition: "all 0.5s ease",
         }}
       >
         <Box className="App__Main">

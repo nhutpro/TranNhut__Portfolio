@@ -126,10 +126,24 @@ const MenuIcon = styled.div`
     transform: rotate(45deg) translate(35px, -35px);
   }
 `;
+const Logo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease-in-out;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  &:hover {
+    cursor: pointer;
+    transform: rotate(360deg);
+  }
+`;
 const Header = () => {
   const language = useSelector((state) => state.language.value);
   const [open, setOpen] = useState(false);
-  // const [language, setLanguage] = useState(currentLanguage);
+  const mode = useSelector((state) => state.mode.value);
   const menuELe = useRef(null);
   const dispatch = useDispatch();
 
@@ -177,7 +191,7 @@ const Header = () => {
           color: Theme.palette.mainColor.titleColor,
         }}
       >
-        <Typography
+        {/* <Typography
           component="h2"
           className="Header__logo"
           sx={{
@@ -185,8 +199,25 @@ const Header = () => {
             fontWeight: 600,
           }}
         >
-          T.Nhựt
-        </Typography>
+          <img src="./image/logo1.svg"></img>
+        </Typography> */}
+        <Logo
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Link to="/">
+            <img
+              src={
+                mode === "light"
+                  ? "./image/logo--light.svg"
+                  : "./image/logo--dark.svg"
+              }
+            ></img>
+          </Link>
+        </Logo>
         <List
           sx={{
             display: "flex",
