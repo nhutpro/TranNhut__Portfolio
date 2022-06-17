@@ -134,7 +134,6 @@ const Portfolio = () => {
       sx={{
         color: Theme.palette.mainColor.textColor,
         position: "relative",
-        zIndex: 0,
       }}
     >
       <Grid
