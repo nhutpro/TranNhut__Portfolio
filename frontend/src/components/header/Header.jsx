@@ -23,6 +23,7 @@ import styled from "styled-components";
 const HeaderItem = styled.p`
   font-size: 20px;
   margin-left: 2rem;
+  font-weight: 600;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
   color: ${(props) => props.Theme.palette.mainColor.titleColor};
@@ -31,7 +32,7 @@ const HeaderItem = styled.p`
   &::after {
     content: "";
     background-color: ${(props) => props.Theme.palette.mainColor.titleColor};
-    height: 1px;
+    height: 2px;
     width: 0%;
     position: absolute;
     bottom: 0;
