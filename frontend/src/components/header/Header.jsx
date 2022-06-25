@@ -19,7 +19,7 @@ import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setLanguageValue } from "../../redux/language";
 import styled from "styled-components";
-import { set } from "mongoose";
+
 const HeaderItem = styled.p`
   font-size: 20px;
   margin-left: 2rem;
@@ -152,7 +152,6 @@ const Header = () => {
   const menuELe = useRef(null);
   const dispatch = useDispatch();
 
-  const closeButton = useRef(null);
   const showMenu = () => {
     // setOpen((prev) => {
     //   if (!prev) {
@@ -164,9 +163,9 @@ const Header = () => {
     // });
     setOpen((prev) => !prev);
   };
-  const closeMenu = () => {
-    setOpen(false);
-  };
+  // const closeMenu = () => {
+  //   setOpen(false);
+  // };
   const handleLang = (e) => {
     // setLanguage(e.target.value);
     dispatch(setLanguageValue(e.target.value));
@@ -220,6 +219,7 @@ const Header = () => {
                   ? "./image/logo--light.svg"
                   : "./image/logo--dark.svg"
               }
+              alt="Logo"
             ></img>
           </Link>
         </Logo>

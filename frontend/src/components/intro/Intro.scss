@@ -1,19 +1,40 @@
 .Logo {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin-bottom: 50px;
-  img {
-    width: 100px;
-    animation: logoEffect 2s ease-in-out;
-    @keyframes logoEffect {
-      0% {
-        transform: translateY(-50px);
-        opacity: 0%;
-      }
+  .Logo__main {
+    img {
+      width: 100px;
+      animation: logoEffect 2s ease-in-out;
+      @keyframes logoEffect {
+        0% {
+          transform: translateY(-50px);
+          opacity: 0%;
+        }
 
-      100% {
-        transform: translateY(-0);
-        opacity: 100%;
+        100% {
+          transform: translateY(-0);
+          opacity: 100%;
+        }
+      }
+    }
+  }
+  .Logo__text {
+    margin-top: 5px;
+    img {
+      width: 200px;
+      animation: textEffect 2s ease-in-out;
+      @keyframes textEffect {
+        0% {
+          transform: translateY(+50px);
+          opacity: 0%;
+        }
+
+        100% {
+          transform: translateY(-0);
+          opacity: 100%;
+        }
       }
     }
   }

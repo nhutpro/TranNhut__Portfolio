@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { lightTheme } from "../../Styles/Theme";
+
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import "./Intro.scss";
@@ -67,11 +67,21 @@ const Intro = () => {
     >
       <Box>
         <div className="Logo">
-          {mode === "light" ? (
-            <img src="./image/logo--light.svg"></img>
-          ) : (
-            <img src="./image/logo--dark.svg"></img>
-          )}
+          <div className="Logo__main">
+            {mode === "light" ? (
+              <img src="./image/logo--light.svg" alt="logo"></img>
+            ) : (
+              <img src="./image/logo--dark.svg" alt="logo"></img>
+            )}
+          </div>
+
+          <div className="Logo__text">
+            {mode === "light" ? (
+              <img src="./image/text--light.svg" alt="text"></img>
+            ) : (
+              <img src="./image/text--dark.svg" alt="text"></img>
+            )}
+          </div>
         </div>
         <SpanEffect>
           <Typography
