@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { lightTheme } from "../../Styles/Theme";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import "./Intro.scss";
 const SpanEffect = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -21,9 +22,11 @@ const SpanEffect = styled.div`
     transition: all 0.5s ease-in-out;
   }
 `;
+
 const Intro = () => {
   const Theme = useTheme();
   const IntroEle = useRef(null);
+  const mode = useSelector((state) => state.mode.value);
   const language = useSelector((state) => state.language.value);
   useEffect(() => {
     const span = IntroEle.current.querySelectorAll("span");
@@ -62,72 +65,81 @@ const Intro = () => {
         transition: "all 0.5s ease-in-out",
       }}
     >
-      <SpanEffect>
-        <Typography
-          component={"span"}
-          sx={{
-            display: "inline-block",
-            paddingRight: "10px",
-            fontSize: "30px",
-            fontWeight: 700,
-            transform: "translateY(-35px)",
-            opacity: 0,
-          }}
-        >
-          {language === "VI" ? "Chào Mừng" : "Welcome"}
-        </Typography>
-        <Typography
-          component={"span"}
-          sx={{
-            display: "inline-block",
-            paddingRight: "10px",
-            fontSize: "30px",
-            fontWeight: 700,
-            transform: "translateY(-35px)",
-            opacity: 0,
-          }}
-        >
-          {language === "VI" ? "Đến" : "To"}
-        </Typography>
-        <Typography
-          component={"span"}
-          sx={{
-            display: "inline-block",
-            paddingRight: "10px",
-            fontSize: "30px",
-            fontWeight: 700,
-            transform: "translateY(-35px)",
-            opacity: 0,
-          }}
-        >
-          {language === "VI" ? "Xem" : "Visit"}
-        </Typography>
-        <Typography
-          component={"span"}
-          sx={{
-            display: "inline-block",
-            paddingRight: "10px",
-            fontSize: "30px",
-            fontWeight: 700,
-            opacity: 0,
-            transform: "translateY(-35px)",
-          }}
-        >
-          {language === "VI" ? "Website" : "My"}
-        </Typography>
-        <Typography
-          component={"span"}
-          sx={{
-            display: "inline-block",
-            fontSize: "30px",
-            fontWeight: 700,
-            opacity: 0,
-            transform: "translateY(-35px)",
-          }}
-        >
-          {language === "VI" ? "Của Tôi" : "Portfolio"}
-        </Typography>
-      </SpanEffect>
+      <Box>
+        <div className="Logo">
+          {mode === "light" ? (
+            <img src="./image/logo--light.svg"></img>
+          ) : (
+            <img src="./image/logo--dark.svg"></img>
+          )}
+        </div>
+        <SpanEffect>
+          <Typography
+            component={"span"}
+            sx={{
+              display: "inline-block",
+              paddingRight: "10px",
+              fontSize: "30px",
+              fontWeight: 700,
+              transform: "translateY(-35px)",
+              opacity: 0,
+            }}
+          >
+            {language === "VI" ? "Chào Mừng" : "Welcome"}
+          </Typography>
+          <Typography
+            component={"span"}
+            sx={{
+              display: "inline-block",
+              paddingRight: "10px",
+              fontSize: "30px",
+              fontWeight: 700,
+              transform: "translateY(-35px)",
+              opacity: 0,
+            }}
+          >
+            {language === "VI" ? "Đến" : "To"}
+          </Typography>
+          <Typography
+            component={"span"}
+            sx={{
+              display: "inline-block",
+              paddingRight: "10px",
+              fontSize: "30px",
+              fontWeight: 700,
+              transform: "translateY(-35px)",
+              opacity: 0,
+            }}
+          >
+            {language === "VI" ? "Xem" : "Visit"}
+          </Typography>
+          <Typography
+            component={"span"}
+            sx={{
+              display: "inline-block",
+              paddingRight: "10px",
+              fontSize: "30px",
+              fontWeight: 700,
+              opacity: 0,
+              transform: "translateY(-35px)",
+            }}
+          >
+            {language === "VI" ? "Website" : "My"}
+          </Typography>
+          <Typography
+            component={"span"}
+            sx={{
+              display: "inline-block",
+              fontSize: "30px",
+              fontWeight: 700,
+              opacity: 0,
+              transform: "translateY(-35px)",
+            }}
+          >
+            {language === "VI" ? "Của Tôi" : "Portfolio"}
+          </Typography>
+        </SpanEffect>
+      </Box>
     </Box>
   );
 };

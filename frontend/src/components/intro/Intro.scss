@@ -1,0 +1,20 @@
+.Logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  img {
+    width: 100px;
+    animation: logoEffect 2s ease-in-out;
+    @keyframes logoEffect {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0%;
+      }
+
+      100% {
+        transform: translateY(-0);
+        opacity: 100%;
+      }
+    }
+  }
+}

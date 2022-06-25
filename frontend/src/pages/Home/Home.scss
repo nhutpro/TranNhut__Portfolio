@@ -66,7 +66,9 @@
         display: flex;
         justify-content: center;
         text-align: center;
-
+        img {
+          width: 80%;
+        }
         @include mobile {
           width: 300px;
           height: 300px;

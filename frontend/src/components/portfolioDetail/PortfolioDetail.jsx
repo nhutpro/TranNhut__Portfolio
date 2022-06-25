@@ -48,8 +48,8 @@ const PortfolioDetail = ({ display, closeDetail, detail }) => {
       onClick={handleClick}
       className={
         display
-          ? "PortfolioDetail__Container"
-          : "PortfolioDetail__Container displayHide"
+          ? "PortfolioDetail__Container PortfolioDetail__Open"
+          : "PortfolioDetail__Container "
       }
       sx={{
         color: Theme.palette.mainColor.textColor,
