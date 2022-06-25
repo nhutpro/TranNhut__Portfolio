@@ -31,7 +31,15 @@ const Button = styled.button`
     }
   }
 `;
-
+const HoverEffect = styled.div`
+  display: inline-block;
+  a {
+    &:hover {
+      color: ${(props) => props.Theme.palette.mainColor.main};
+      text-decoration: underline;
+    }
+  }
+`;
 const PortfolioDetail = ({ display, closeDetail, detail }) => {
   const Theme = useTheme();
   const language = useSelector((state) => state.language.value);
@@ -49,7 +57,7 @@ const PortfolioDetail = ({ display, closeDetail, detail }) => {
       className={
         display
           ? "PortfolioDetail__Container PortfolioDetail__Open"
-          : "PortfolioDetail__Container "
+          : "PortfolioDetail__Container"
       }
       sx={{
         color: Theme.palette.mainColor.textColor,
@@ -85,14 +93,16 @@ const PortfolioDetail = ({ display, closeDetail, detail }) => {
           </Typography>
           <Typography component="p" className="Text--Bold">
             {language === "VI" ? "Xem Website: " : "Visit Website: "}
-            <Typography
-              component="a"
-              href={detail.website}
-              target="_blank"
-              className="Text--Normal"
-            >
-              {detail.website}
-            </Typography>
+            <HoverEffect Theme={Theme}>
+              <Typography
+                component="a"
+                href={detail.website}
+                target="_blank"
+                className="Text--Normal"
+              >
+                {detail.website}
+              </Typography>
+            </HoverEffect>
           </Typography>
         </Box>
         <Button
