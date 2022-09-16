@@ -4,12 +4,9 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import Theme from "./Styles/Theme";
-import { ThemeProvider } from "@emotion/react";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../src/redux/store";
 import { Provider } from "react-redux";
-import Intro from "./components/intro/Intro";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

@@ -50,6 +50,8 @@ const Home = () => {
   const Theme = useTheme();
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
+  console.log("server",process.env.REACT_APP_SERVER);
+  console.log("client",process.env.REACT_APP_CLIENT);
   useEffect(() => {
     const getProfile = async () => {
       try {
@@ -57,7 +59,7 @@ const Home = () => {
         const profile = await axios.get(
           process.env.REACT_APP_SERVER + "/profile?lang=" + language
         );
-
+          
         setData(profile.data);
         setLoading(false);
       } catch (err) {}

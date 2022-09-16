@@ -121,7 +121,7 @@ const Intro = () => {
               opacity: 0,
             }}
           >
-            {language === "VI" ? "Xem" : "Visit"}
+            {language === "VI" ? "Xem" :""}
           </Typography>
           <Typography
             component={"span"}

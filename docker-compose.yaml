@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  backend:
+    build: "."
+    ports:
+    - "3001:3001"
+    environment:
+    - PORT=3001
+    - MONGODB=mongodb+srv://Nhutpro:Trannhut1@cluster0.pc6gvu6.mongodb.net/portfolio?retryWrites=true&w=majority
+
+
+  frontend:
+    build: "./frontend"
+    ports:
+     - "3000:3000"
+    environment:
+    - REACT_APP_SERVER=http://localhost:3001/api
